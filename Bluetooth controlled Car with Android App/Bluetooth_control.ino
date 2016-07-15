@@ -23,7 +23,7 @@ void setup()
     // initialize serial communication at 9600 bits per second:
     Serial.begin(9600);
     //Wait for initialization!
-    While(!Serial);
+    while(!Serial);
 }
  
 void loop() 
