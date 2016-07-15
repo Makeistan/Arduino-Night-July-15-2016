@@ -8,13 +8,11 @@ int motor2Pin1 = 12;
 int motor2Pin2 = 13; 
 int enable2Pin = 6;
 
+int state=0;
 
-
- 
-int state;
-void setup() {
+void setup() 
+{
     // sets the pins as outputs:
-    
     pinMode(motor1Pin1, OUTPUT);
     pinMode(motor1Pin2, OUTPUT);
     pinMode(enable1Pin, OUTPUT);
@@ -24,18 +22,20 @@ void setup() {
    
     // initialize serial communication at 9600 bits per second:
     Serial.begin(9600);
+    //Wait for initialization!
+    While(!Serial);
 }
  
-void loop() {
+void loop() 
+{
     //if some date is sent, reads it and saves in state
     if(Serial.available())
     {     
       state = Serial.read();
     }
     delay(100);
-    // if the state is '1' the DC motor will go forward 
-     
-      if (state == 1) // forward
+    // if the state is '1' the DC motor will go forward
+    if (state == 1) // forward
     {        
       digitalWrite(motor1Pin1, HIGH); 
       digitalWrite(motor1Pin2, LOW);
@@ -45,8 +45,8 @@ void loop() {
       analogWrite(enable2Pin, 180);
       Serial.println("Forward");
     }
-   
-    else if (state == 2)  // left
+   // if the state is '1' the DC motor will go left
+    else if (state == 2)
     {
       //turn left
         digitalWrite(motor1Pin1, HIGH); 
